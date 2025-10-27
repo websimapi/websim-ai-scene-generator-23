@@ -79,6 +79,7 @@ export function initializeCanvas(canvasElement) {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    // Mouse events
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseup', onMouseUp);
     canvas.addEventListener('mousemove', onMouseDown);
