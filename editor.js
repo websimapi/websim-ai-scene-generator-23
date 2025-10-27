@@ -80,7 +80,6 @@ export function initializeCanvas(canvasElement) {
     window.addEventListener('resize', resizeCanvas);
 
     // Mouse events
-    canvas.addEventListener('mousedown', onMouseDown);
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseup', onMouseUp);
     canvas.addEventListener('click', onClick);
@@ -212,7 +211,7 @@ function onMouseMove(e) {
 }
 
 function onTouchMove(e) {
-    if (e.touches.length === 1) {
+    if (e.changedTouches.length === 1) {
         e.preventDefault();
         if (isDragging && selectedAssetId && activeTool === 'move') {
             const pos = getTouchPos(e);
@@ -234,10 +233,12 @@ function onMouseUp(e) {
 }
 
 function onTouchEnd(e) {
-    if (isDragging) {
-        markAsDirty();
+    if (e.changedTouches.length === 1) {
+        if (isDragging) {
+            markAsDirty();
+        }
+        isDragging = false;
     }
-    isDragging = false;
 }
 
 function onDragOver(e) {
