@@ -80,19 +80,17 @@ export function initializeCanvas(canvasElement) {
     window.addEventListener('resize', resizeCanvas);
 
     // Mouse events
+    canvas.addEventListener('mousedown', onMouseDown);
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mouseup', onMouseUp);
-    canvas.addEventListener('mousemove', onMouseDown);
-    canvas.addEventListener('mousemove', onMouseUp);
-    canvas.addEventListener('mousemove', onClick);
-    canvas.addEventListener('mousemove', onDragOver);
-    canvas.addEventListener('mousemove', onDrop);
+    canvas.addEventListener('click', onClick);
+    canvas.addEventListener('dragover', onDragOver);
+    canvas.addEventListener('drop', onDrop);
     
     // Touch events
-    canvas.addEventListener('mousemove', onTouchStart, { passive: false });
-    canvas.addEventListener('mousemove', onTouchMove, { passive: false });
-    canvas.addEventListener('mousemove', onTouchEnd);
-    canvas.addEventListener('mousemove', onTouchEnd);
+    canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+    canvas.addEventListener('touchend', onTouchEnd, { passive: false });
     
     document.getElementById('tool-move').addEventListener('click', () => setTool('move'));
     document.getElementById('tool-add').addEventListener('click', () => setTool('add'));
